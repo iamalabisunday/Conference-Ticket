@@ -1,6 +1,5 @@
 import logo from "./assets/images/logo-full.svg";
 import CodeCard from "./CodeCard.jsx";
-import ConferenceTicketCard from "./ConferenceTicketCard.jsx";
 
 export default function Congrats() {
   return (
