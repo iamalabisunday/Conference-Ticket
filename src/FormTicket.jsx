@@ -5,7 +5,7 @@ import iconUpload from "./assets/images/icon-upload.svg";
 export default function FormTicket() {
   return (
     <>
-      <div className="w-fit h-auto flex flex-col items-center justify-center gap-8 md:pb-0 pb-10">
+      <div className="w-fit h-full flex flex-col items-center justify-center gap-8 md:pb-0 pb-10">
         <header className="w-full h-auto pt-8  md:pt-0 flex flex-col items-center justify-center gap-8">
           <img src={logo} alt="logo" className="md:w-[20%] w-[45%] " />
           <section className="md:w-full w-[90%] flex flex-col items-center justify-center gap-4 ">
