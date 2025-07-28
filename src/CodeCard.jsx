@@ -4,7 +4,18 @@ import logoMark from "./assets/images/logo-mark.svg";
 import profileImage from "./assets/images/image-avatar.jpg";
 import githubLogo from "./assets/images/icon-github.svg";
 
-export default function CodeCard() {
+export default function CodeCard({ formData }) {
+  // Extract data from formData or use defaults
+  const userName = formData?.name || "Jonatan Kristof";
+  const userGithub = formData?.github || "@jonatankristof0101";
+  const userAvatar = formData?.upload
+    ? URL.createObjectURL(formData.upload)
+    : profileImage;
+
+  // Generate a random ticket number
+  const ticketNumber = `#${Math.floor(Math.random() * 99999)
+    .toString()
+    .padStart(5, "0")}`;
   return (
     <section className="w-full flex items-center justify-center mx-auto">
       <div className="relative md:w-[55%] w-[90%] max-w-2xl">
@@ -15,7 +26,7 @@ export default function CodeCard() {
             {/* Header Section */}
             <div className="flex items-center gap-3 sm:gap-3 mb-4">
               <img
-                src={logoMark}
+                src={logoMark || "/placeholder.svg"}
                 alt="Logo Mark"
                 className="w-8 h-8 sm:w-8 sm:h-8 lg:w-8 lg:h-8 object-contain"
               />
@@ -32,18 +43,22 @@ export default function CodeCard() {
             {/* Profile Section */}
             <div className="flex items-center gap-3 sm:gap-4 mt-auto">
               <img
-                src={profileImage}
+                src={userAvatar || "/placeholder.svg"}
                 alt="Jonatan Kristof"
                 className="w-12 h-12 sm:w-14 sm:h-14 lg:w-14 lg:h-14 rounded-xl object-cover"
               />
               <div className="flex flex-col justify-start items-start">
-                <h2 className="text-lg sm:text-xl lg:text-1xl font-medium text-[var(--Neutral-0)]">
-                  Jonatan Kristof
+                <h2 className="text-lg sm:text-xl lg:text-1xl font-medium text-[var(--Neutral-0)] ">
+                  {userName}
                 </h2>
                 <div className="flex items-center gap-1">
-                  <img src={githubLogo} alt="Github Logo" className="w-4 h-4" />
+                  <img
+                    src={githubLogo || "/placeholder.svg"}
+                    alt="Github Logo"
+                    className="w-4 h-4"
+                  />
                   <p className="text-xs sm:text-sm font-light text-[var(--Neutral-300)]">
-                    @jonatankristof0101
+                    {userGithub}
                   </p>
                 </div>
               </div>
@@ -52,7 +67,7 @@ export default function CodeCard() {
             {/* Ticket Number */}
             <div className="absolute right-2 md:right-2 sm:right-6 top-1/2 transform -translate-y-1/2 rotate-90">
               <p className="md:text-2xl sm:text-sm font-light text-[var(--Neutral-300)] tracking-wider">
-                #01609
+                {ticketNumber}
               </p>
             </div>
           </div>

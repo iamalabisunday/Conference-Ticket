@@ -4,7 +4,13 @@ import FormTicket from "./FormTicket.jsx";
 import Congrats from "./Congrats.jsx";
 
 export default function ConferenceTicket() {
-  const [submitted, setSubmitted] = useState(false); // state moved here
+  const [submitted, setSubmitted] = useState(false);
+  const [formData, setFormData] = useState(null);
+
+  const handleSucess = (data) => {
+    setSubmitted(true);
+    setFormData(data);
+  };
 
   return (
     <main className="relative w-full md:min-h-screen min-h-screen flex justify-center items-center py-12">
@@ -16,9 +22,9 @@ export default function ConferenceTicket() {
       {/* Content (on top) */}
       <div className="relative z-10 flex items-center justify-center h-full">
         {submitted ? (
-          <Congrats />
+          <Congrats formData={formData} />
         ) : (
-          <FormTicket onSubmitSuccess={() => setSubmitted(true)} />
+          <FormTicket onSubmitSuccess={handleSucess} />
         )}
       </div>
     </main>

@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import logo from "./assets/images/logo-full.svg";
 import iconInfo from "./assets/images/icon-info.svg";
@@ -121,6 +123,14 @@ export default function FormTicket({ onSubmitSuccess }) {
 
     if (hasError) return;
 
+    // Pass form data to parent component
+    const formData = {
+      name,
+      email,
+      github,
+      upload,
+    };
+
     // Reset form
     setUpload("");
     setName("");
@@ -130,7 +140,8 @@ export default function FormTicket({ onSubmitSuccess }) {
     setErrorName("");
     setErrorEmail("");
     setErrorGithub("");
-    if (onSubmitSuccess) onSubmitSuccess();
+
+    if (onSubmitSuccess) onSubmitSuccess(formData);
   };
 
   return (
@@ -179,18 +190,9 @@ export default function FormTicket({ onSubmitSuccess }) {
               </p>
             </div>
 
-            {/* Avatar Preview */}
-            {upload && (
-              <img
-                src={URL.createObjectURL(upload)}
-                alt="Avatar Preview"
-                className="w-16 h-16 rounded-full object-cover mt-2"
-              />
-            )}
-
             {/* Upload Info + Error */}
             {errorUpload ? (
-              <div className="text-xs flex items-center gap-1 text-[var(--Orange-500)]">
+              <div className="text-xs flex items-center gap-1">
                 <img
                   src={iconInfo}
                   alt="Info Icon"
@@ -204,8 +206,23 @@ export default function FormTicket({ onSubmitSuccess }) {
                   {errorUpload}
                 </p>
               </div>
+            ) : upload ? (
+              <div className="text-xs flex items-center gap-1">
+                <img
+                  src={iconInfo}
+                  alt="Info Icon"
+                  className="w-[0.65rem]"
+                  style={{
+                    filter:
+                      "invert(56%) sepia(94%) saturate(469%) hue-rotate(86deg) brightness(97%) contrast(92%)",
+                  }}
+                />
+                <p className="text-[0.60rem] text-green-500">
+                  Upload successful!
+                </p>
+              </div>
             ) : (
-              <div className="text-xs flex items-center gap-1 text-[var(--Neutral-300)]">
+              <div className="text-xs flex items-center gap-1">
                 <img
                   src={iconInfo}
                   alt="Info Icon"
@@ -314,7 +331,7 @@ export default function FormTicket({ onSubmitSuccess }) {
             {errorGithub && (
               <div className="text-xs flex items-center gap-1 text-[var(--Orange-500)]">
                 <img
-                  src={iconInfo}
+                  src={iconInfo || "/placeholder.svg"}
                   alt="Info Icon"
                   className="w-[0.65rem]"
                   style={{
