@@ -7,7 +7,7 @@ export default function ConferenceTicket() {
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState(null);
 
-  const handleSucess = (data) => {
+  const handleSuccess = (data) => {
     setSubmitted(true);
     setFormData(data);
   };
@@ -24,7 +24,7 @@ export default function ConferenceTicket() {
         {submitted ? (
           <Congrats formData={formData} />
         ) : (
-          <FormTicket onSubmitSuccess={handleSucess} />
+          <FormTicket onSubmitSuccess={handleSuccess} />
         )}
       </div>
     </main>
