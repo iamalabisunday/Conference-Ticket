@@ -1,4 +1,4 @@
-import ConferenceTicket from "./conferenceTicket.jsx";
+import ConferenceTicket from "./ConferenceTicket.jsx";
 
 export default function App() {
   return (
